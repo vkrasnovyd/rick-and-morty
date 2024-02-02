@@ -8,6 +8,7 @@ from rest_framework.response import Response
 
 from characters.models import Character
 from characters.serializers import CharacterSerializer
+from pagination import CharacterListPagination
 
 
 @extend_schema(
@@ -28,6 +29,7 @@ class CharacterListView(generics.ListAPIView):
     """List of characters with filter by name."""
 
     serializer_class = CharacterSerializer
+    pagination_class = CharacterListPagination
 
     def get_queryset(self) -> QuerySet:
         queryset = Character.objects.all()
